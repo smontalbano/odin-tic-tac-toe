@@ -4,7 +4,7 @@ class Board
         self.create_board
     end
 
-    def display_current_board
+    def to_s
         @board.each do |x|
             puts x.each { |p| p}.join('')
         end
