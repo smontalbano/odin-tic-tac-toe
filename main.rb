@@ -1,14 +1,22 @@
 require_relative 'lib/board.rb'
 require_relative 'lib/player.rb'
+require_relative 'lib/game.rb'
 
 puts "Enter player one's name:"
 player_one = Player.new(gets.chomp)
 puts "Enter player two's name:"
 player_two = Player.new(gets.chomp)
 board = Board.new
+game = Game.new
+Board.display_board
 i = 1
-
 while i > 0
-    puts board.to_s
-    puts player_one.name + "'s turn: "
+    puts player_one.name + "'s turn"
+    game.player_move(gets.chomp.to_i, player_one)
+    Board.display_board
+    puts game.win?
+    puts player_two.name + "'s turn"
+    game.player_move(gets.chomp.to_i, player_two)
+    Board.display_board
+    puts game.win?
 end
