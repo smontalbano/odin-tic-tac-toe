@@ -9,14 +9,25 @@ player_two = Player.new(gets.chomp)
 board = Board.new
 game = Game.new
 Board.display_board
+winner = ''
 i = 1
+
 while i > 0
     puts player_one.name + "'s turn"
     game.player_move(gets.chomp.to_i, player_one)
     Board.display_board
-    puts game.win?
+    if game.win?
+        winner = player_one.name
+        break
+    end
     puts player_two.name + "'s turn"
     game.player_move(gets.chomp.to_i, player_two)
     Board.display_board
-    puts game.win?
+    if game.win?
+        winner = player_two.name
+        break
+    end
+
 end
+
+puts "#{winner} wins!"
