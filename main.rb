@@ -1,6 +1,6 @@
-require_relative 'lib/board.rb'
-require_relative 'lib/player.rb'
-require_relative 'lib/game.rb'
+require_relative 'lib/board'
+require_relative 'lib/player'
+require_relative 'lib/game'
 
 puts "Enter player one's name:"
 player_one = Player.new(gets.chomp)
@@ -13,20 +13,20 @@ winner = ''
 i = 1
 
 while i > 0
-    puts player_one.name + "'s turn"
-    game.player_move(gets.chomp.to_i, player_one)
-    Board.display_board
-    if game.win?
-        winner = player_one.name
-        break
-    end
-    puts player_two.name + "'s turn"
-    game.player_move(gets.chomp.to_i, player_two)
-    Board.display_board
-    if game.win?
-        winner = player_two.name
-        break
-    end
+  puts player_one.name + "'s turn"
+  Game.player_move(gets.chomp.to_i, player_one)
+  Board.display_board
+  if game.win?
+    winner = player_one.name
+    break
+  end
+  puts player_two.name + "'s turn"
+  Game.player_move(gets.chomp.to_i, player_two)
+  Board.display_board
+  if game.win?
+    winner = player_two.name
+    break
+  end
 
 end
 
