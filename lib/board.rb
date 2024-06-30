@@ -1,39 +1,26 @@
-# frozen_string_literal: true
-
-require_relative 'player'
-require_relative 'game'
+require_relative 'game.rb'
 
 class Board
-  @@board = []
-  @@game = ''
-  def initialize
-    create_board
-    @@game = Game.new
-  end
+    @@board = [ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
 
-  def self.display_board
-    @@board.each do |x|
-      puts x.each { |p| }.join('')
+    WINS = [ [0, 1, 2], [3, 4, 5], [6, 7, 8],       #Horizonatal Lines
+             [0, 3, 6], [1, 4, 7], [2, 5, 8],       #Vertical Line
+             [0, 4, 8], [2, 4, 6]]                  #Diagonal Lines
+    @winner = ''
+
+    def display_board
+        puts " #{@@board[0]} | #{@@board[1]} | #{@@board[2]} "
+        puts '-----------'
+        puts " #{@@board[3]} | #{@@board[4]} | #{@@board[5]} "
+        puts '-----------'
+        puts " #{@@board[6]} | #{@@board[7]} | #{@@board[8]} "
     end
-  end
 
-  def self.mark_board(idx1, idx2, sym)
-    @@board[idx1][idx2] = " #{sym} "
-  end
+    def mark_square(sel, sym)
+        @@board[sel - 1] = sym
+    end
 
-  def self.get_board_value(idx1, idx2)
-    @@board[idx1][idx2]
-  end
-
-  private
-
-  def create_board
-    @@board = [
-      [' 1 ', '|', ' 2 ', '|', ' 3 '],
-      ['-----------'],
-      [' 4 ', '|', ' 5 ', '|', ' 6 '],
-      ['-----------'],
-      [' 7 ', '|', ' 8 ', '|', ' 9 ']
-    ]
-  end
+    def win?(sym)
+        WINS.any? { |line| line.all? { |idx| self.board[idx] == sym}}
+    end
 end
