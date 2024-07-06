@@ -46,7 +46,7 @@ class Game
 
   def mark_square(player, sel, sym)
     @@board[sel - 1] = sym
-    display_board
+    #display_board
     win?(player, sym)
   end
 
